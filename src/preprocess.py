@@ -8,9 +8,13 @@ with open("params.yaml") as f:
 
 raw = np.load("data/raw/fashion_mnist.npz")
 
-x_train = (raw["x_train"].astype("float32") / 255.0 - 0.286) / 0.353
+# Reconciled normalisation: scale pixels to [0, 1], then standardise
+# with the training-set mean and std (supersedes the [-1, 1] min-max variant).
+MEAN, STD = 0.286, 0.353
+
+x_train = (raw["x_train"].astype("float32") / 255.0 - MEAN) / STD
 y_train = raw["y_train"]
-x_test = (raw["x_test"].astype("float32") / 255.0 - 0.286) / 0.353
+x_test = (raw["x_test"].astype("float32") / 255.0 - MEAN) / STD
 y_test = raw["y_test"]
 
 x_tr, x_val, y_tr, y_val = train_test_split(
