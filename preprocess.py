@@ -27,3 +27,5 @@ np.savez("data/processed/val.npz", x=x_val, y=y_val)
 np.savez("data/processed/test.npz", x=x_test, y=y_test)
 
 print("Saved processed data:", x_tr.shape, x_val.shape, x_test.shape)
+
+print("Preprocessing finished successfully")
