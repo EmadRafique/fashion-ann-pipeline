@@ -8,9 +8,9 @@ with open("params.yaml") as f:
 
 raw = np.load("data/raw/fashion_mnist.npz")
 
-x_train = raw["x_train"].astype("float32") / 255.0
+x_train = (raw["x_train"].astype("float32") / 255.0 - 0.286) / 0.353
 y_train = raw["y_train"]
-x_test = raw["x_test"].astype("float32") / 255.0
+x_test = (raw["x_test"].astype("float32") / 255.0 - 0.286) / 0.353
 y_test = raw["y_test"]
 
 x_tr, x_val, y_tr, y_val = train_test_split(
